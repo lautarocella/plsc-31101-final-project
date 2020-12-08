@@ -10,10 +10,6 @@ List what software your code depends on, as well as version numbers, like so:.
 2. Package - tidyverse
 3. Package - purrr
 4. Package - ggplot2
-5. Package - tm
-6. Package - stm
-7. Package - ggplot2
-8. Package - getcaption
 
 ## Files
 List all files (other than `README.md` and `Final-Project.RProj`) contained in the repo, along with a brief description of each one, like so:
