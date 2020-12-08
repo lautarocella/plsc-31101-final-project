@@ -42,8 +42,9 @@ List all files (other than `README.md` and `Final-Project.RProj`) contained in t
 
 ## More Information
 
-Author name: Lautaro Cella
-Email: lcella[at]uchicago.edu 
+Author name: Lautaro Cella. PhD Student in Political Science, University of Chicago
+
+Email: lcella@ uchicago.edu 
 
 Thank you for visiting my repository! 
 
