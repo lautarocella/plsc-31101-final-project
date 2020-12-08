@@ -1,0 +1,89 @@
+---
+title: "Narrative"
+author: "Lautaro Cella"
+date: "12/5/2020"
+output:
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Brief substantive background/goal
+
+From 1994 to 2014, Brazil’s party system for the presidency and the Chamber of Deputies was institutionalized (Mainwaring, Power and Bizarro, 2018). During these years, party discipline in Congress was high and barriers for political outsiders entering the system increased. But only one party, the PT, developed a robust organization and strong roots in society. In the last five years, Dilma Rousseff’s impeachment, the country’s economic crisis, society’s repudiation of the PT and Jair Bolsonaro’s election have created new challenges for the party system, whose stability is now under question. In this context, it is important to study party discipline in the Chamber of Deputies and how it has evolved. 
+
+In this project I will analyze the evolution of party discipline in Brazil’s Chamber of Deputies using the Rice Index (Rice, 1928). What is more, with data from the Brazilian Legislative Surveys, I will explore how parties' opinion on party discipline relates to their Rice Index.
+
+The Rice Index for a single roll call vote is the absolute difference between the percentage of party members voting Yes and the percentage of party members voting No. During roll call votes, each Deputy explicitly chooses an option (Yes, No, Abstain) and all votes are recorded.
+
+
+## Collecting data
+
+Firstly, I wrote code to download the CSV file with the 2020 roll call votes from the Chamber of Deputies' website. I read this CSV file into R as a dataframe.
+ 
+Based on this code, I wrote a function (get_csv) to automatically download the CSV file with the roll call votes for any year. I noticed I only needed to change the YEAR on the URL to download the file for any year. For a given year u (input), my function returned a dataframe with the roll call votes for that year (output). The CSV files did not have a variable with the year of the roll call votes, so I included code in the function to add a column to the dataframe with the corresponding year. 
+
+Next, I used map_dfr to apply the get_csv function to every year from 2002 to 2020. I assigned the roll call votes to a data frame called votes. 
+
+Finally, I loaded the dataset of the Brazilian Legislative Surveys -BLS- (1990-2017). The BLS surveys members of the Brazilian Congress and is conducted every four years.
+
+
+## Cleaning/ Pre- processing data
+
+The votes dataframe had 885.751 observations and 13 variables. The number of observations can change because 2020 roll call votes are updated. I only kept the variables of interest for my analysis. The dataframe was in Portuguese, so I renamed variables in English. Each observation was a deputy in a given roll call vote (id_vote) in a particular year (year). My variables were: 
+
+1. Year of the roll call vote (year)
+2. Unique id for the roll call vote (id_vote)
+3. Deputy's name (name_deputy)
+4. Unique id for the deputy (id_deputy)
+5. Political party of the deputy (party_deputy)
+6. How the deputy voted in each roll call vote (vote)
+
+I faced an important challenge when analyzing the data because I realized that some roll call votes (unique_id) had very few Deputies voting on them. The Brazilian Chamber has 513 Deputies and the quorum is 257 members, but in some votes less than 100 Deputies had voted. This did not make sense. I read the Chamber's brief codebook and the Chamber's Rules of Procedures to understand what was going on. It turned out that not all votes on the dataframe were roll call votes. There were also some symbolical votes (equivalent to voice votes in the USA). In symbolical votes, those in favor remain seated, those opposed stand up and the names of Deputies voting on each side are not recorded. However, Deputies can ask for their vote to be registered if they want to. I was able to differentiate between roll call votes and symbolic votes because symbolic votes had less than 257 Deputies voting. I dropped symbolic votes because to calculate the Rice Index I only needed roll call votes.
+
+For every roll call vote (unique_id), my dataframe contained how every Deputy who was present voted. Absent Deputies were not included in the dataframe. I translated the two values of the variable vote that were relevant to calculate the Rice Index: Yes and No. 
+
+A second challenge was that reading the Legislative Surveys codebook I realized that some parties had changed their name. Therefore, I changed some names to make sure that parties had a unique name. I used the structure "Old Name - New Name". Moreover, since I knew I would have to merge the votes dataframe with the BLS dataframe, I made sure that parties in both dataframes were called the same.
+
+After cleaning my data, I grouped my votes dataframe by id_vote and party_deputy to calculate the percentage of Yes and No votes per party per roll call vote, as well as their absolute difference. Then, I grouped by party_deputy and year and calculated the Rice Index for every political party for every year.
+
+The BLS dataset had 1287 observations and 321 variables. Each observation was a Deputy surveyed in a year. I was interested in two questions the Deputies answered: "Do you think that members of Congress should vote with their party or according to their personal beliefs?" and "Should parties expel members who vote against the wishes of the party leadership?". I transformed these variables (believe and expel_all) into dummy variables. I assigned 1 to a position in favor of party discipline (vote with the party and expel undisciplined members). Voting according to one's believes and not expelling undisciplined members were coded as 0. I ignored neutral answers and recoded NAs. Next, I created the opinions dataframe with the average believe and expel_all scores for every party for every year. These variables showed for each party in a year the percentage of surveyed Deputies who held positions in favor of party discipline.
+
+Finally, I merged the rice and the opinions dataframes using the variables party_deputy and year.
+
+
+## Analysis and visualization
+
+I created a histogram with the Rice Index for all parties from 2002 to 2020. The distribution is skewed to the left, with some undisciplined parties. I included a vertical line with the average Rice Index, which was 88.4. A way to interpret this is that, on average, party majorities of around 94 percent were pitted against minorities of around 6 percent. 
+
+`![optional caption text](C:/Users/lauta/Pictures/histogram_rice.png)
+
+
+I made a line graph with the mean Rice Index for all parties per year. I included a horizontal line with the average. Since 2015, the mean Rice Index has been below the average, although it continues to be relatively high. I also constructed a box plot of the Rice Index over time. Since 2015, on average, there seems to be more dispersion and more outliers than before.
+
+`![optional caption text](C:/Users/lauta/Pictures/line_rice.png)
+
+I included a graph with the Rice Index for the three main parties in the Brazilian party system: the PMDB-MDB, the PSDB and the PT. Of the three, the PT has been and continues to be the most disciplined party.
+
+`![optional caption text](C:/Users/lauta/Pictures/main_rice.png)
+
+In 2005, 2009, 2013 and 2017, the mean percent of surveyed Deputies who believed Deputies should vote with their party was 43.70. And the mean percent who believed that parties should expel undisciplined Deputies was 38.28. Thus, these opinions are not held by the majority.
+
+I graphed the party's Rice Index and the percentage of surveyed Deputies who believe that Deputies should vote with their party rather than according to their believes. The correlation coefficient between these variables is 0.2. There seems to be many disciplined parties whose Deputies don't think they should vote with the party rather than according to their believes.
+
+`![optional caption text](C:/Users/lauta/Pictures/scatter_rice_believe.png) 
+
+I also graphed the party's Rice Index and the percentage of surveyed Deputies who believe that parties should expel undisciplined Deputies (in 2005, 2009 2013 and 2017). The correlation coefficient is 0.04. There seems to be many disciplined parties that don't believe that undisciplined Deputies should be expelled.
+
+In comparison to the MDB-PMDB and the PSDB, the PT has a higher percent of surveyed members who belive Deputies should vote with the party and that undisciplined Deputies should be expelled.
+
+
+## Future Work
+
+In this exploratory study I have analyzed the evolution of party discipline in the Brazilian Chamber of Deputies. In future research I could analyze with more sophisticated statistical methods to what degree the dynamics of party discipline have changed since 2015. Are there more undisciplined parties than before? Has there been a change in the way parties work in Congress?
+
+I am also interested in studying the relationship between party institutionalization and party discipline. Thames (2007) shows that different levels of institutionlization among political parties create variations in levels of party discipline in post-Soviet legislatures. I could analyze if in Brazil weakly institutionalized parties are less disciplined. This project has shown that the PT is one of the most disciplined parties and we know that it is also the most institutionalized. 
+
+Another idea would be to conduct a comparative study of party discipline in South America. Are Brazilian parties more disciplined than other parties in the region? I would need to scrape a number of websites in order to do this and the roll call votes would be in different formats. In Argentina, for example, they are in PDF. This comparison would help to put the Brazilian numbers into perspective. After getting the data I would explore what explains variation in party discipline across countries.
