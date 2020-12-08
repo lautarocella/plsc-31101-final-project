@@ -1,6 +1,6 @@
 ## Short Description
 
-This code analyzes and visualises Jeremy Corbyn's and Boris Johnson's responses to questions posed during 3 debates held prior to the 2019 UK general election.
+This code analyzes party discipline and legislators’ opinion on party discipline in Brazil’s Chamber of Deputies between 2002 and 2020. Firstly, I wrote a function that automatically downloaded all roll call votes from the Chamber’s website and created a data frame. Then, I cleaned my data and calculated the Rice Index (a party discipline indicator) for each party-year. Next, I tidied the Brazilian Legislative Surveys dataset to get party’s opinion on party discipline for each party-year. Finally, I merged the two dataframes and visualized the results. 
 
 ## Dependencies
 
