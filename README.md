@@ -1,10 +1,8 @@
 ## Short Description
 
-This code analyzes party discipline and the opinion of legislators on party discipline in Brazil’s Chamber of Deputies between 2002 and 2020. Firstly, I wrote a function that automatically downloaded all roll call votes from the Chamber’s website and created a data frame. Then, I cleaned my data and calculated the Rice Index (a party discipline indicator) for each party-year. I also downloaded and I tidied the Brazilian Legislative Surveys dataset to get the opinion of legislators on party discipline for each party-year. Finally, I merged the two dataframes and visualized the results. 
+This code analyzes party discipline and the opinion of legislators on party discipline in Brazil’s Chamber of Deputies between 2002 and 2020. Firstly, I wrote a function that automatically downloaded all roll call votes from the Chamber’s website and created a data frame. Then, I cleaned my data and calculated the Rice Index (a party discipline indicator) for each party-year. I also downloaded and tidied the Brazilian Legislative Surveys dataset to get the opinion of legislators on party discipline for each party-year. Finally, I merged the two dataframes and visualized the results. 
 
 ## Dependencies
-
-List what software your code depends on, as well as version numbers, like so:.
 
 1. R version 4.0.2 (2020-06-22) -- "Taking Off Again"
 2. Package - tidyverse
