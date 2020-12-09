@@ -19,7 +19,7 @@ This code analyzes party discipline and the opinion of legislators on party disc
 
 #### Code/
 1. 01_collect-data.R: Collects data from the Brazilian Chamber of Deputies and creates the Votes dataframe. Loads the Brazilian Legislative Surveys (BLS) dataset.
-2. 02_clean-data.R: Tidies data from the Votes and BLS datasets to create the Rice and Rice_opinions datasets
+2. 02_clean-data.R: Tidies and transforms data from the Votes and BLS datasets to create the Rice and Rice_opinions datasets
 3. 03_analysis.R: Conducts descriptive analysis of the data and produces the visualizations found in the Results directory.
 
 #### Data/
