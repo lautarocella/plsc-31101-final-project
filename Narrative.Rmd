@@ -16,7 +16,7 @@ From 1994 to 2014, Brazil’s party system for the presidency and the Chamber of
 
 In this project I will analyze the evolution of party discipline in Brazil’s Chamber of Deputies using the Rice Index (Rice, 1928). What is more, with data from the Brazilian Legislative Surveys, I will explore how the opinion of party members on party discipline relates to their Rice Index.
 
-The Rice Index for a single roll call vote is the absolute difference between the percentage of party members voting Yes and the percentage of party members voting No. During roll call votes, each Deputy explicitly chooses an option (Yes, No, Abstain) and all votes are recorded.
+The Rice Index for a single roll call vote is the absolute difference between the percentage of party members voting Yes and the percentage of party members voting No. During roll call votes, each deputy explicitly chooses an option (Yes, No, Abstain) and all votes are recorded.
 
 
 ## Collecting data
@@ -39,15 +39,15 @@ The Votes dataframe had 885,751 observations of 13 variables. The number of obse
 3. Political party of the deputy (party_deputy)
 4. How the deputy voted in each roll call vote (vote)
 
-I faced an important challenge when analyzing the data because I realized that some roll call votes (unique_id) had very few Deputies voting on them. The Brazilian Chamber has 513 Deputies and the quorum is 257 members, but in some votes (unique_id) less than 100 Deputies had voted. This did not make sense. I read the Chamber's brief online codebook and the Chamber's Rules of Procedures to understand what was going on. It turned out that not all votes on the dataframe were roll call votes. There were also some symbolical votes (equivalent to voice votes in the USA). In symbolical votes, those in favor remain seated, while those opposed stand up and the names of Deputies voting on each side are not recorded. However, Deputies can ask for their vote to be registered if they want to. I was able to differentiate between roll call votes and symbolic votes because symbolic votes had less than 257 Deputies voting. I dropped symbolic votes because to calculate the Rice Index I only needed roll call votes.
+I faced an important challenge when analyzing the data because I realized that some roll call votes (unique_id) had very few deputies voting on them. The Brazilian Chamber has 513 deputies and the quorum is 257 members, but in some votes (unique_id) less than 100 deputies had voted. This did not make sense. I read the Chamber's brief online codebook and the Chamber's Rules of Procedures to understand what was going on. It turned out that not all votes on the dataframe were roll call votes. There were also some symbolical votes (equivalent to voice votes in the USA). In symbolical votes, those in favor remain seated, while those opposed stand up and the names of deputies voting on each side are not recorded. However, deputies can ask for their vote to be registered if they want to. I was able to differentiate between roll call votes and symbolic votes because symbolic votes had less than 257 deputies voting. I dropped symbolic votes because to calculate the Rice Index I only needed roll call votes.
 
-For every roll call vote (unique_id), my dataframe contained how every Deputy who was present voted. Absent Deputies were not included on the dataframe. I translated the two values of the variable vote that were relevant to calculate the Rice Index: Yes and No. 
+For every roll call vote (unique_id), my dataframe contained how every deputy who was present voted. Absent deputies were not included on the dataframe. I translated the two values of the variable vote that were relevant to calculate the Rice Index: Yes and No. 
 
 A second challenge was that reading the Legislative Surveys codebook I realized that some parties had changed their name. Therefore, I changed some names to make sure that parties had a unique name. I used the structure "Old Name - New Name". Moreover, since I knew I would have to merge the Votes dataframe with the Opinions one (created from the BLS dataset), I made sure that parties in both dataframes were called the same.
 
 After cleaning my data, I grouped my Votes dataframe by id_vote and party_deputy to calculate the percentage of Yes and No votes per party per roll call vote, as well as their absolute difference. Then, I grouped by party_deputy and year and calculated the Rice Index for every political party for every year.
 
-The BLS dataset had 1,287 observations of 321 variables. Each observation was a Deputy surveyed in a year. I was interested in two questions Deputies answered: "Do you think that members of Congress should vote with their party or according to their personal beliefs?" and "Should parties expel members who vote against the wishes of the party leadership?". I transformed these variables (believe and expel_all) into dummy variables. I assigned 1 to a position in favor of party discipline (vote with the party and expel undisciplined members). Voting according to one's beliefs and not expelling undisciplined members were coded as 0. I ignored neutral answers and recoded NAs. Next, I created the Opinions dataframe with the average believe and expel_all scores for every party for every year. These variables showed for each party in a year the percentage of surveyed Deputies who held positions in favor of party discipline.
+The BLS dataset had 1,287 observations of 321 variables. Each observation was a deputy surveyed in a year. I was interested in two questions deputies answered: "Do you think that members of Congress should vote with their party or according to their personal beliefs?" and "Should parties expel members who vote against the wishes of the party leadership?". I transformed these variables (believe and expel_all) into dummy variables. I assigned 1 to a position in favor of party discipline (vote with the party and expel undisciplined members). Voting according to one's beliefs and not expelling undisciplined members were coded as 0. I ignored neutral answers and recoded NAs. Next, I created the Opinions dataframe with the average believe and expel_all scores for every party for every year. These variables showed for each party in a year the percentage of surveyed deputies who held positions in favor of party discipline.
 
 Finally, I merged the Rice and the Opinions dataframes using the variables party_deputy and year.
 
@@ -66,15 +66,15 @@ I also graphed the Rice Index for the three main parties in the Brazilian party 
 
 `![optional caption text](C:/Users/lauta/Documents/GitHub/plsc-31101-final-project/Results/main_rice.png)
 
-In 2005, 2009, 2013 and 2017, the mean percentage of surveyed party members who believed Deputies should vote with their party was 43.70. And the mean percent of members who believed that parties should expel undisciplined Deputies was 38.28. Thus, these strict opinions are not held by the majority in the Chamber.
+In 2005, 2009, 2013 and 2017, the mean percentage of surveyed party members who believed deputies should vote with their party was 43.70. And the mean percent of members who believed that parties should expel undisciplined deputies was 38.28. Thus, these strict opinions are not held by the majority in the Chamber.
 
-I plotted party's Rice Index and the percentage of surveyed members who believe that Deputies should vote with their party (not according to their beliefs). The correlation coefficient between these variables is low (0.23). There seems to be many disciplined parties whose members don't think Deputies should always vote with the party.
+I plotted party's Rice Index and the percentage of surveyed members who believe that deputies should vote with their party (not according to their beliefs). The correlation coefficient between these variables is low (0.23). There seems to be many disciplined parties whose members don't think deputies should always vote with the party.
 
 `![optional caption text](C:/Users/lauta/Documents/GitHub/plsc-31101-final-project/Results/scatter_rice_believe.png) 
 
-I also plotted party's Rice Index and the percentage of surveyed members who believe that parties should expel undisciplined Deputies. Here there is almost no correlation (the coefficient is 0.05). In the same way, there seems to be many disciplined parties whose members don't believe that undisciplined Deputies should be expelled.
+I also plotted party's Rice Index and the percentage of surveyed members who believe that parties should expel undisciplined deputies. Here there is almost no correlation (the coefficient is 0.05). In the same way, there seems to be many disciplined parties whose members don't believe that undisciplined deputies should be expelled.
 
-In comparison to the MDB-PMDB and the PSDB, the PT has a higher percent of surveyed members who belive Deputies should vote with the party and that undisciplined Deputies should be expelled.
+In comparison to the MDB-PMDB and the PSDB, the PT has a higher percent of surveyed members who belive deputies should vote with the party and that undisciplined deputies should be expelled.
 
 
 ## Future Work
