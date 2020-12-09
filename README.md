@@ -1,6 +1,6 @@
 ## Short Description
 
-This code analyzes party discipline and the opinion of legislators on party discipline in Brazil’s Chamber of Deputies between 2002 and 2020. Firstly, I wrote a function that automatically downloaded all roll call votes from the Chamber’s website and created a data frame. Then, I cleaned and transformed my data to calculate the Rice Index (a party discipline indicator) for each party-year. I also tidied the Brazilian Legislative Surveys dataset to get the opinion of legislators on party discipline for each party-year. Finally, I merged the two dataframes and visualized the results. 
+This code analyzes party discipline and the opinion of legislators on party discipline in Brazil’s Chamber of Deputies from 2002 to 2020. Firstly, I wrote a function that automatically downloaded all roll call votes from the Chamber’s website and created a data frame. Then, I cleaned and transformed my data to calculate the Rice Index (a party discipline indicator) for each party-year. I also tidied the Brazilian Legislative Surveys dataset to get the opinion of legislators on party discipline for each party-year. Finally, I merged the two dataframes and visualized the results. 
 
 ## Dependencies
 
@@ -19,7 +19,7 @@ This code analyzes party discipline and the opinion of legislators on party disc
 
 #### Code/
 1. 01_collect-data.R: Collects data from the Brazilian Chamber of Deputies and creates the Votes dataframe. Loads the Brazilian Legislative Surveys (BLS) dataset.
-2. 02_clean-data.R: Tidies data from the Votes and BLS datasets to create the Rice and Rice_opinions datasets
+2. 02_clean-data.R: Tidies and transforms data from the Votes and BLS datasets to create the Rice and Rice_opinions datasets
 3. 03_analysis.R: Conducts descriptive analysis of the data and produces the visualizations found in the Results directory.
 
 #### Data/
@@ -36,7 +36,7 @@ This code analyzes party discipline and the opinion of legislators on party disc
 2. line_rice.png: Line graph of average Rice Index over time in the Brazilian Chamber of Deputies from 2002 to 2020.
 3. boxplot_rice.png: Box plot of Rice Index over time in the Brazilian Chamber of Deputies from 2002 to 2020.
 4. main_rice.png: Line graph of Rice Index over time for main political parties in the Brazilian Chamber of Deputies from 2002 to 2020.
-5. scatter_rice_believe.png: Rice Index and Percentage of party members who believe Deputies should vote with their party (not according to their beliefs).2005, 2009, 2013, 2017.
+5. scatter_rice_believe.png: Rice Index and Percentage of party members who believe Deputies should vote with their party (not according to their beliefs). 2005, 2009, 2013, 2017.
 6. scatter_rice_expel.png: Rice Index and Percentage of party members who believe parties should expel undisciplined Deputies. 2005, 2009, 2013, 2017.
 
 ## More Information
