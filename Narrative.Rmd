@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 From 1994 to 2014, Brazil’s party system for the presidency and the Chamber of Deputies was institutionalized (Mainwaring, Power and Bizarro, 2018). During these years, party discipline in Congress was high and barriers for political outsiders entering the system increased. But only one party, the PT, developed a robust organization and strong roots in society. In the last five years, Dilma Rousseff’s impeachment, the country’s economic crisis, society’s repudiation of the PT and Jair Bolsonaro’s election have created new challenges for the party system, whose stability is now under question. In this context, it is important to study party discipline in the Chamber of Deputies and how it has evolved. 
 
-In this project I will analyze the evolution of party discipline in Brazil’s Chamber of Deputies using the Rice Index (Rice, 1928). What is more, with data from the Brazilian Legislative Surveys, I will explore how the opinion of legislators on party discipline relates to their Rice Index.
+In this project I will analyze the evolution of party discipline in Brazil’s Chamber of Deputies using the Rice Index (Rice, 1928). What is more, with data from the Brazilian Legislative Surveys, I will explore how the opinion of party members on party discipline relates to their Rice Index.
 
 The Rice Index for a single roll call vote is the absolute difference between the percentage of party members voting Yes and the percentage of party members voting No. During roll call votes, each Deputy explicitly chooses an option (Yes, No, Abstain) and all votes are recorded.
 
