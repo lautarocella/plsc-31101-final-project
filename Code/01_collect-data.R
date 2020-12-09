@@ -24,7 +24,7 @@ get_csv <- function(u){
 votes <- map_dfr(2002:2020, get_csv)
 
 
-# Save votes dataframe as CSV file
+# Save votes data frame as CSV file
 write.csv(votes, "Data/votes.csv")
 
 
