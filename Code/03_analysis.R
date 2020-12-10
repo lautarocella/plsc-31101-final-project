@@ -21,7 +21,7 @@ histogram_rice
 ggsave("Results/histogram_rice.png", width = 338.666666667, height = 173.83125, units = "mm")
 
 
-#2.Crete line graph with average rice index for all parties per year
+#2.Create line graph with average rice index for all parties per year
 #The horizontal line is the average 
 
 line_rice <- rice  %>% group_by(year)  %>% 

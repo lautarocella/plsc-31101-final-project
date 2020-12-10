@@ -25,14 +25,14 @@ Firstly, I wrote code to download the CSV file with the 2020 roll call votes fro
  
 Based on this code, I wrote a function (get_csv) to automatically download the CSV file with the roll call votes for any year. I noticed I only needed to change the YEAR on the URL to download the file for any year. For a given year u (input), my function returned a data frame with the roll call votes for that year (output). The CSV files did not have a variable with the year of the roll call votes, so I included code in the function to add a column to the data frame with the corresponding year. 
 
-Next, I used map_dfr to apply the get_csv function to every year from 2002 to 2020. I assigned the roll call votes to a data frame called votes. 
+Next, I used map_dfr to apply the get_csv function to every year from 2002 to 2020. This took some time because there are many observations. I assigned the roll call votes to a data frame called Votes. 
 
 Finally, I loaded the dataset of the Brazilian Legislative Surveys -BLS- (1990-2017). The BLS surveys members of the Brazilian Congress and is conducted every four years.
 
 
 ## Cleaning/ Pre- processing data
 
-The Votes data frame had 885,751 observations of 13 variables. The number of observations can change because 2020 roll call votes are updated. I only kept the variables of interest for my analysis. The data frame was in Portuguese, so I renamed variables in English. Each observation was a deputy in a given roll call vote (id_vote) in a particular year (year). The most important variables were: 
+The Votes data frame had 881,335 observations of 13 variables. The number of observations can change because 2020 roll call votes are updated. I only kept the variables of interest for my analysis. The data frame was in Portuguese, so I renamed variables in English. Each observation was a deputy in a given roll call vote (id_vote) in a particular year (year). The most important variables were: 
 
 1. Year of the roll call vote (year)
 2. Unique id for the roll call vote (id_vote)
