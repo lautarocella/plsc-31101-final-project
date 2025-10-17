@@ -30,3 +30,4 @@ write.csv(votes, "Data/votes.csv")
 
 # Load the Brazilian Legislative Sureys (1990-2017) dataset
 load ("Data/BLS8_Data.RData")
+
