@@ -17,12 +17,12 @@ This code analyzes party discipline and the opinion of legislators on party disc
 2. Narrative.pdf: A knitted pdf of Narrative.Rmd. 
 3. Slides.pptx: My lightning talk slides.
 
-#### Code/
+#### Code
 1. 01_collect-data.R: Collects data from the Brazilian Chamber of Deputies and creates the Votes dataframe. Loads the Brazilian Legislative Surveys (BLS) dataset.
 2. 02_clean-data.R: Tidies and transforms data from the Votes and BLS datasets to create the Rice and Rice_opinions datasets
 3. 03_analysis.R: Conducts descriptive analysis of the data and produces the visualizations found in the Results directory.
 
-#### Data/
+#### Data
 
 1. votes.csv: Contains data from all roll call votes taken in the Brazilian Chamber of Deputies from 2002 to 2020.
 2. BLS.RDta: Brazilian Legislative Surveys dataset. Available here: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/ARYBJI
@@ -30,7 +30,7 @@ This code analyzes party discipline and the opinion of legislators on party disc
 4. rice.csv: New dataset with the Rice Index for every political party in the Brazilian Chamber of Deputies for every year from 2002 to 2020.
 5. rice_opinions.csv: New dataset with Rice Index and opinions on party discipline for political parties in the Brazilian Chamber of Deputies in 2005, 2009, 2013 and 2017.
 
-#### Results/
+#### Results
 
 1. histogram_rice.png: Histogram of Rice Index in the Brazilian Chamber of Deputies from 2002 to 2020.
 2. line_rice.png: Line graph of average Rice Index over time in the Brazilian Chamber of Deputies from 2002 to 2020.
@@ -41,7 +41,7 @@ This code analyzes party discipline and the opinion of legislators on party disc
 
 ## More Information
 
-Author: Lautaro Cella. PhD Student in Political Science, University of Chicago.
+Author: Lautaro Cella. PhD Candidate in Political Science, University of Chicago.
 
 Email: lcella@uchicago.edu 
 
