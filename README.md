@@ -11,7 +11,7 @@ This code analyzes party discipline and the opinion of legislators on party disc
 
 ## Files
 
-#### /
+#### 
 
 1. Narrative.Rmd: Provides a 3-5 page narrative of the project, main challenges, solutions, and results.
 2. Narrative.pdf: A knitted pdf of Narrative.Rmd. 
